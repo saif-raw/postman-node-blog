@@ -16,7 +16,7 @@ const blogData = JSON.parse(fs.readFileSync(USERS, "utf-8"));
 app.get("/blogs", (req, res) => {
     let data = blogData.filter((blog) => {
         return Object.keys(req.query).every((key) => {
-            return blog[key] == req.query[key];
+            return blog[key].trim().replace(" ", "") == req.query[key].trim().replace(" ", "");
         });
     });
 
